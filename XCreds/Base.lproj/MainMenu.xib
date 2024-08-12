@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23077.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23077.2"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -689,7 +689,7 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Uvh-o1-mcs"/>
-                <menuItem title="OIDC Usernaem" tag="2" enabled="NO" id="7wW-bt-MeR">
+                <menuItem title="OIDC Username" tag="2" enabled="NO" id="7wW-bt-MeR">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="nextPasswordCheckTimeMenuItemSelected:" target="1OV-ou-Ss5" id="Gny-X3-1ZT"/>

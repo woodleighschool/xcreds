@@ -143,7 +143,7 @@ class StatusMenuController: NSObject, NSMenuItemValidation {
         case .NextPasswordCheckMenuItem:
             print("NextPasswordCheckMenuItem")
             if let nextPassCheck = mainController?.nextPasswordCheck {
-                menuItem.title="Next check: \(nextPassCheck)"
+                menuItem.title="Next Check: \(nextPassCheck)"
             }
             return false
         case .CredentialStatusMenuItem:
@@ -237,7 +237,7 @@ class StatusMenuController: NSObject, NSMenuItemValidation {
                 
                 userName = kerberosPrincipalName
             }
-            menuItem.title = "Active Directory Username: \(userName) "
+            menuItem.title = "AD Username: \(userName) "
             return false
         }
 
