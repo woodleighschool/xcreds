@@ -48,7 +48,22 @@ protocol UpdateCredentialsFeedbackProtocol {
                 break
             case .failure(let msg):
                 TCSLogWithMark(msg)
-                authFail(msg)
+                TCSLogWithMark("error setting up hints, reloading page:\(msg)")
+                let alert = NSAlert()
+                alert.addButton(withTitle: "OK")
+                alert.messageText=msg
+
+                alert.window.canBecomeVisibleWithoutLogin=true
+
+                let bundle = Bundle.findBundleWithName(name: "XCreds")
+
+                if let bundle = bundle {
+                    TCSLogWithMark("Found bundle")
+
+                    alert.icon=bundle.image(forResource: NSImage.Name("icon_128x128"))
+
+                }
+                alert.runModal()
 
             }
 
@@ -410,6 +425,8 @@ protocol UpdateCredentialsFeedbackProtocol {
     fileprivate func setRequiredHintsAndContext() {
         TCSLogWithMark()
         TCSLogWithMark("Setting hints for user: \(shortName)")
+        TCSLogWithMark("Setting user to \(shortName)")
+
         mechanismDelegate?.setHint(type: .user, hint: shortName)
         mechanismDelegate?.setHint(type: .pass, hint: passString)
         TCSLogWithMark()
@@ -941,6 +958,10 @@ extension SignInViewController: NoMADUserSessionDelegate {
         setRequiredHintsAndContext()
         mechanismDelegate?.setHint(type: .firstName, hint: user.firstName)
         mechanismDelegate?.setHint(type: .lastName, hint: user.lastName)
+        TCSLogWithMark("Setting user to \(user.shortName)")
+        mechanismDelegate?.setHint(type: .user, hint: user.shortName)
+        mechanismDelegate?.setContextString(type: kAuthorizationEnvironmentUsername, value: user.shortName)
+
         mechanismDelegate?.setHint(type: .noMADDomain, hint: domainName)
         mechanismDelegate?.setHint(type: .groups, hint: user.groups)
         mechanismDelegate?.setHint(type: .fullName, hint: user.cn)

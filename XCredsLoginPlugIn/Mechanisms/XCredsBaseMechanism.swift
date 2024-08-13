@@ -98,8 +98,7 @@ import OpenDirectory
                 if isMemberOfAllowedGroup==false {
                     TCSLogWithMark("user is not allowed to login. not in member of allowed group.")
 
-                    denyLogin(message: "user is not allowed to login. not in member of allowed group")
-                    return .failure("The user is not allowed to login due to allowLoginIfMemberOfGroup")
+                    return .failure("The user is not allowed to login because they not in member of allowed group.")
                 }
                 else {
                     TCSLogWithMark("user allowed to login")
@@ -114,6 +113,8 @@ import OpenDirectory
                 setHint(type: .lastName, hint: lastName)
             }
             if let username = userInfo.username {
+                TCSLogWithMark("set shortname to \(username)")
+
                 setHint(type: .user, hint: username)
             }
             if let fullUsername = userInfo.fullUsername {
@@ -240,7 +241,7 @@ import OpenDirectory
 
             setContextString(type: kAuthorizationEnvironmentPassword, value: password)
             TCSLogWithMark("setting username")
-
+            TCSLogWithMark("setting username to \(username)")
             setHint(type: .user, hint: username)
             TCSLogWithMark("setting tokens.password")
 
@@ -313,6 +314,7 @@ import OpenDirectory
 
                 return nil
             }
+            TCSLogWithMark("username is \(userName)")
             return userName
         }
     }
